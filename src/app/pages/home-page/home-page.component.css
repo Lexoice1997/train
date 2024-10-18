@@ -1,0 +1,30 @@
+:host {
+  width: 100%;
+  padding: 0 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+.trips {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-swap {
+  margin: 0 -4px;
+}
+
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+}

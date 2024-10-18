@@ -1,0 +1,97 @@
+<div class="profile-card card">
+  <h2>Profile</h2>
+  <form class="form" [formGroup]="nameForm" (ngSubmit)="updateName()">
+    <label for="name">Name</label>
+    <div class="form-block">
+      <input
+        id="name"
+        formControlName="name"
+        [attr.readonly]="!isNameEditing() || null"
+      />
+      @if (isNameEditing()) {
+        <button
+          type="submit"
+          class="button-small"
+          [disabled]="nameInput?.invalid || isNameWaitingResponse()"
+        >
+          <img src="icon-save.png" alt="Save" />
+        </button>
+      } @else {
+        <button type="button" class="button-small" (click)="editName()">
+          <img src="icon-edit.png" alt="Edit" />
+        </button>
+      }
+    </div>
+    <div class="error">
+      @if (nameInput?.touched && nameInput?.errors?.["required"]) {
+        Name is required
+      }
+    </div>
+  </form>
+  <form class="form" [formGroup]="emailForm" (ngSubmit)="updateEmail()">
+    <label for="email">Email</label>
+    <div class="form-block">
+      <input
+        id="email"
+        formControlName="email"
+        [attr.readonly]="!isEmailEditing() || null"
+      />
+      @if (isEmailEditing()) {
+        <button
+          type="submit"
+          class="button-small"
+          [disabled]="emailInput?.invalid || isEmailWaitingResponse()"
+        >
+          <img src="icon-save.png" alt="Save" />
+        </button>
+      } @else {
+        <button type="button" class="button-small" (click)="editEmail()">
+          <img src="icon-edit.png" alt="Edit" />
+        </button>
+      }
+    </div>
+    <div class="error">
+      @if (emailInput?.errors?.["emailAlreadyExists"]) {
+        Email already exists
+      } @else if (emailInput?.touched) {
+        @if (emailInput?.errors?.["required"]) {
+          Email is required
+        } @else if (emailInput?.errors?.["invalidEmail"]) {
+          Incorrect email
+        }
+      }
+    </div>
+  </form>
+  <div class="buttons">
+    <button (click)="showPasswordDialog()">Change Password</button>
+    <button (click)="logout()">Logout</button>
+  </div>
+</div>
+<dialog #passwordDialog id="dialog">
+  <div class="dialog">
+    <div class="buttons">
+      <h2>Change Password</h2>
+      <button class="button-close" onClick="dialog.close()">
+        <img src="icon-close.png" alt="Close" />
+      </button>
+    </div>
+    <form class="form" [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
+      <label for="password">New Password</label>
+      <input id="password" formControlName="password" type="password" />
+      <div class="error">
+        @if (passwordInput?.errors?.["invalidPassword"]) {
+          Invalid password
+        } @else if (passwordInput?.touched) {
+          @if (passwordInput?.errors?.["required"]) {
+            Password is required
+          } @else if (passwordInput?.errors?.["minlength"]) {
+            Password must be at least 8 characters
+          }
+        }
+      </div>
+      <button type="submit" [disabled]="isPasswordWaitingResponse()">
+        Save
+      </button>
+    </form>
+  </div>
+</dialog>

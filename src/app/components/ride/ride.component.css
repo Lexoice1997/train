@@ -1,0 +1,110 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+hr {
+  width: 100%;
+}
+
+.block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.travel-time {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  align-items: center;
+  font-size: 14px;
+  color: var(--main-color);
+  text-shadow: 0 0 1px gray;
+}
+
+.travel-line {
+  flex-grow: 1;
+  height: 2px;
+  background-color: var(--main-color);
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 64px;
+  row-gap: 8px;
+}
+
+.schedule {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 4px;
+  min-width: 260px;
+  max-width: 400px;
+}
+
+.date {
+  font-size: 14px;
+  color: gray;
+}
+
+.route {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.ride {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ride-line {
+  padding: 4px 8px;
+  border-radius: 16px;
+  background-color: #dadada;
+}
+
+.carriage-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.carriage {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  align-items: center;
+  column-gap: 16px;
+}
+
+.carriage div:nth-child(2) {
+  justify-self: flex-end;
+}
+
+.carriage div:nth-child(3) {
+  justify-self: center;
+}
+
+.mark {
+  position: relative;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--main-color);
+}
+
+.last .circle {
+  background-color: var(--main-color);
+}

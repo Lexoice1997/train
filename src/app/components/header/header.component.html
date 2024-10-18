@@ -1,0 +1,44 @@
+<div class="block">
+  <ta-header-link
+    [link]="'/'"
+    [class.header-link-current-disabled]="currentPage() === 'home'"
+    >Home</ta-header-link
+  >
+  @if (isAuthenticated()) {
+    <ta-header-link
+      [link]="'/profile'"
+      [class.header-link-current-disabled]="currentPage() === 'profile'"
+      >Profile</ta-header-link
+    >
+    <ta-header-link
+      [link]="'/orders'"
+      [class.header-link-current-disabled]="currentPage() === 'orders'"
+    >
+      @if (isManager()) {
+        Orders
+      } @else {
+        My Orders
+      }
+    </ta-header-link>
+  }
+</div>
+<div class="block">
+  @if (!isAuthenticated()) {
+    <ta-header-link
+      [link]="'/signin'"
+      [class.header-link-current-disabled]="currentPage() === 'signin'"
+      >Sign In</ta-header-link
+    >
+    <ta-header-link
+      [link]="'/signup'"
+      [class.header-link-current-disabled]="currentPage() === 'signup'"
+      >Sign Up</ta-header-link
+    >
+  } @else if (isManager()) {
+    <ta-header-link
+      [link]="'/admin/stations'"
+      [class.header-link-current-disabled]="currentPage() === 'admin'"
+      >Admin</ta-header-link
+    >
+  }
+</div>

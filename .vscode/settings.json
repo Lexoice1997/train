@@ -1,0 +1,9 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#263b53"
+  },
+  "eslint.useFlatConfig": true,
+}

@@ -1,0 +1,40 @@
+:host {
+  padding: 0 clamp(4px, -16px + 5vw, 16px);
+  border-radius: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a::after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 0%;
+  height: 2px;
+  background-color: #000;
+  opacity: 0;
+  transition:
+    width 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+}
+
+a:hover::after {
+  width: 100%;
+  opacity: 1;
+}
+
+a:active {
+  color: #4255ff;
+}
+
+a:active::after {
+  background-color: #4255ff;
+}
+
+:host(.header-link-current-disabled) a:hover::after {
+  opacity: 0;
+}

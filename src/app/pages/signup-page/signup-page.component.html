@@ -1,0 +1,48 @@
+<form class="form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <h2>Sign Up</h2>
+  <label for="email">Email</label>
+  <input id="email" formControlName="email" type="email" />
+  <div class="error">
+    @if (formSubmitted) {
+      @if (signupForm.get("email")?.errors?.["required"]) {
+        Email is required
+      } @else if (signupForm.get("email")?.errors?.["invalidEmail"]) {
+        Incorrect email
+      } @else if (signupForm.get("email")?.errors?.["emailExists"]) {
+        Account with this email already exists
+      }
+    }
+  </div>
+
+  <label for="password">Password</label>
+  <input id="password" formControlName="password" type="password" />
+  <div class="error">
+    @if (formSubmitted) {
+      @if (signupForm.get("password")?.errors?.["required"]) {
+        Password is required
+      } @else if (signupForm.get("password")?.errors?.["minlength"]) {
+        Password must be at least 8 characters
+      } @else if (signupForm.get("password")?.errors?.["invalidPassword"]) {
+        Invalid password
+      }
+    }
+  </div>
+
+  <label for="repeatPassword">Repeat Password</label>
+  <input id="repeatPassword" formControlName="repeatPassword" type="password" />
+  <div class="error">
+    @if (
+      signupForm.get("repeatPassword")?.touched &&
+      signupForm.errors?.["passwordsMismatch"]
+    ) {
+      Passwords do not match
+    }
+  </div>
+
+  <div class="buttons">
+    <button type="submit" [disabled]="signupForm.invalid || isSubmitting">
+      Register
+    </button>
+    <button (click)="goToSignIn()" type="button">Sign In</button>
+  </div>
+</form>

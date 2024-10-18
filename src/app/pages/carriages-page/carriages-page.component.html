@@ -1,0 +1,67 @@
+<ta-admin-subheader />
+@if (formType() !== "none") {
+  <div class="carriage-card card">
+    <form class="form" [formGroup]="carriageForm" (ngSubmit)="setCarriage()">
+      @if (formType() === "create") {
+        <h2>Create New Carriage</h2>
+      } @else if (formType() === "edit") {
+        <h2>Edit Carriage</h2>
+        <label for="code">Code</label>
+        <input id="code" formControlName="code" readonly />
+      }
+      <label for="name">Name</label>
+      <input
+        id="name"
+        formControlName="name"
+        maxlength="20"
+        autocomplete="off"
+      />
+      <label for="leftSeats">Left Seats</label>
+      <input
+        id="leftSeats"
+        type="number"
+        formControlName="leftSeats"
+        min="1"
+        max="5"
+      />
+      <label for="rightSeats">Right Seats</label>
+      <input
+        id="rightSeats"
+        type="number"
+        formControlName="rightSeats"
+        min="1"
+        max="5"
+      />
+      <label for="rows">Rows</label>
+      <input id="rows" type="number" formControlName="rows" min="12" max="20" />
+      <div class="buttons">
+        <button type="submit" [disabled]="carriageForm.invalid">Save</button>
+        <button type="button" (click)="this.formType.set('none')">
+          Cancel
+        </button>
+      </div>
+    </form>
+    <ta-carriage
+      [carriage]="carriageForm.value"
+      [style.pointer-events]="'none'"
+    />
+  </div>
+} @else {
+  <button (click)="this.createCarriage()">Create Carriage</button>
+}
+@for (carriage of carriageTypes(); track carriage.code) {
+  <div class="carriage-card card">
+    <div>
+      <h2>{{ carriage.name }}</h2>
+      <ta-carriage [carriage]="carriage" [style.pointer-events]="'none'" />
+    </div>
+    <div class="buttons">
+      <button class="button-small" (click)="editCarriage(carriage)">
+        <img src="icon-edit.png" alt="Edit" />
+      </button>
+      <button class="button-small" (click)="deleteCarriage(carriage)">
+        <img src="icon-delete.png" alt="Delete" />
+      </button>
+    </div>
+  </div>
+}

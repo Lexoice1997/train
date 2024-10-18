@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  font-size: clamp(20px, 4px + 4vw, 28px);
+  padding: clamp(4px, -16px + 5vw, 16px);
+}
+
+.block {
+  display: flex;
+}

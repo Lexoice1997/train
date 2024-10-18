@@ -1,0 +1,40 @@
+<form class="form" [formGroup]="signinForm!" (ngSubmit)="onSubmit()">
+  <h2>Sign In</h2>
+
+  <label for="email">Email</label>
+  <input id="email" formControlName="email" type="email" />
+  <div class="error">
+    @if (formSubmitted) {
+      @if (signinForm?.errors?.["userNotFound"]) {
+        Incorrect email or password
+      } @else if (signinForm?.get("email")?.errors?.["required"]) {
+        Email is required
+      } @else if (signinForm?.get("email")?.errors?.["invalidEmail"]) {
+        Incorrect email
+      }
+    }
+  </div>
+
+  <label for="password">Password</label>
+  <input id="password" formControlName="password" type="password" />
+  <div class="error">
+    @if (formSubmitted) {
+      @if (signinForm?.errors?.["userNotFound"]) {
+        Incorrect email or password
+      } @else if (signinForm?.get("password")?.errors?.["required"]) {
+        Password is required
+      }
+    }
+  </div>
+
+  <div class="buttons">
+    <button
+      ta-button
+      type="submit"
+      [disabled]="signinForm?.invalid || isSubmitting"
+    >
+      Sign In
+    </button>
+    <button (click)="goToSignUp()" type="button">Sign Up</button>
+  </div>
+</form>

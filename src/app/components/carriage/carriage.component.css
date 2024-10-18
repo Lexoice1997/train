@@ -1,0 +1,33 @@
+:host {
+  --seat-size: 32px;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 2px;
+  height: calc((var(--seat-size) + 2px) * var(--seats-in-row) - 2px + 12px);
+}
+
+.seat {
+  width: var(--seat-size);
+  height: var(--seat-size);
+  border-color: lightgray;
+  box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.3);
+  transition:
+    background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+}
+
+.seat-selected {
+  background-color: #ef8e10;
+}
+
+.seat:disabled {
+  background-color: gray;
+  cursor: default;
+  pointer-events: none;
+}
+
+.margin {
+  margin-top: 12px;
+}

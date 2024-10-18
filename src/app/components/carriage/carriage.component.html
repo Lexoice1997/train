@@ -1,0 +1,11 @@
+@for (seat of seats; track $index) {
+  <button
+    class="seat"
+    [class.margin]="
+      $index % (carriage.leftSeats + carriage.rightSeats) ===
+      carriage.leftSeats - 1
+    "
+  >
+    {{ $index + 1 }}
+  </button>
+}

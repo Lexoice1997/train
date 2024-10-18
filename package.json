@@ -1,0 +1,38 @@
+{
+  "name": "train-a",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "ng lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^18.2.2",
+    "@angular/common": "^18.2.2",
+    "@angular/compiler": "^18.2.2",
+    "@angular/core": "^18.2.2",
+    "@angular/forms": "^18.2.2",
+    "@angular/platform-browser": "^18.2.2",
+    "@angular/platform-browser-dynamic": "^18.2.2",
+    "@angular/router": "^18.2.2",
+    "@planess/train-a-backend": "^0.0.11",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "rxjs": "~7.8.1",
+    "tslib": "^2.7.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^18.2.2",
+    "@angular/cli": "^18.2.2",
+    "@angular/compiler-cli": "^18.2.2",
+    "angular-eslint": "18.3.0",
+    "eslint": "^9.9.1",
+    "prettier": "3.3.3",
+    "typescript": "~5.5.4",
+    "typescript-eslint": "8.3.0"
+  }
+}

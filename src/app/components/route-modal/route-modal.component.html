@@ -1,0 +1,44 @@
+<ng-content>
+  <div class="dialog">
+    <div class="header">
+      <h2>Route {{ rideInfo.routeId }}</h2>
+      <button class="button-close" onclick="dialog.close()">
+        <img src="icon-close.png" alt="Close" />
+      </button>
+    </div>
+    <hr />
+    <div class="table">
+      <div class="table-header">Time</div>
+      <div></div>
+      <div class="table-header">Station</div>
+      <div></div>
+      <div class="table-header">Stop</div>
+      @for (element of rideInfo.elements; track element) {
+        <div class="time">
+          <div>
+            <span class="time-day">{{ element.time[0] | date: "MMM dd" }}</span>
+            {{ element.time[0] | date: "HH:mm" }}
+          </div>
+          <div>
+            <span class="time-day">{{ element.time[1] | date: "MMM dd" }}</span>
+            {{ element.time[1] | date: "HH:mm" }}
+          </div>
+        </div>
+        <div class="mark" [class.first]="$first" [class.last]="$last">
+          <div class="circle"></div>
+        </div>
+        <div class="station">{{ element.stationName }}</div>
+        <div></div>
+        <div class="stop">
+          @if ($index === 0) {
+            first station
+          } @else if ($index === rideInfo.elements.length - 1) {
+            last station
+          } @else {
+            {{ element.stopTimeMs / 1000 / 60 | formatTime }}
+          }
+        </div>
+      }
+    </div>
+  </div>
+</ng-content>

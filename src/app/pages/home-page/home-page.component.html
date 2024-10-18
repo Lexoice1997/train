@@ -1,0 +1,50 @@
+<div class="trips" [class.hidden]="!showTrips()">
+  <form class="search-form" [formGroup]="form" (ngSubmit)="search()">
+    <input type="text" list="citiesFrom" formControlName="cityFrom" />
+    <datalist id="citiesFrom">
+      @for (city of citiesFrom(); track $index) {
+        <option value="{{ city }}">{{ city }}</option>
+      }
+    </datalist>
+    <button type="button" class="button-swap" (click)="swapValues()">
+      <img src="icon-swap.png" alt="Swap cities" />
+    </button>
+    <input type="text" list="citiesTo" formControlName="cityTo" />
+    <datalist id="citiesTo">
+      @for (city of citiesTo(); track $index) {
+        <option value="{{ city }}">{{ city }}</option>
+      }
+    </datalist>
+
+    <input type="date" [min]="today" formControlName="departureDate" />
+    @if (departureDate.value) {
+      <input type="time" formControlName="departureTime" />
+    }
+    <button type="submit" [disabled]="form.invalid">Search</button>
+  </form>
+
+  <div class="filter">
+    @for (date of filterDates(); track date) {
+      <button
+        class="button-filter"
+        (click)="setFilterTripsDate(date)"
+        [class.button-filter-active]="filterTripsDate() === date"
+      >
+        {{ date | date: "MMM-dd ccc" }}
+      </button>
+    }
+  </div>
+
+  @for (trip of trips() | filterTrips: filterTripsDate(); track trip.rideId) {
+    <ta-ride
+      [bookTicket]="bookTicket"
+      [trip]="trip"
+      (showRouteEvent)="showRoute(trip.rideInfo)"
+    />
+  }
+</div>
+<dialog ta-route-modal id="dialog" [rideInfo]="routeModalRideInfo()"></dialog>
+<div [class.hidden]="showTrips()">
+  TRIPS
+  <button (click)="showTrips.set(false)">BACK</button>
+</div>

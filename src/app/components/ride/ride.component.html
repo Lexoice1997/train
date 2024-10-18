@@ -1,0 +1,60 @@
+<div class="info">
+  <div class="schedule">
+    <div class="time block">
+      <div>{{ trip.departureTime | date: "H:mm" }}</div>
+      <div class="travel-time">
+        <div class="mark">
+          <div class="circle"></div>
+        </div>
+        <div class="travel-line"></div>
+        <div>{{ travelTime() | formatTime }}</div>
+        <div class="travel-line"></div>
+        <div class="mark last">
+          <div class="circle"></div>
+        </div>
+      </div>
+      <div>{{ trip.arrivalTime | date: "H:mm" }}</div>
+    </div>
+    <div class="date block">
+      <div>{{ trip.departureTime | date: "MMMM dd" }}</div>
+      <div>{{ trip.arrivalTime | date: "MMMM dd" }}</div>
+    </div>
+    <div class="block">
+      <div>{{ trip.fromStationName }}</div>
+      <div>{{ trip.toStationName }}</div>
+    </div>
+  </div>
+  <div class="route">
+    <div class="ride">
+      Ride
+      <div class="ride-line">
+        {{ trip.routeStartStationName }} ->
+        {{ trip.routeEndStationName }}
+      </div>
+    </div>
+    <button (click)="showRoute()">Route</button>
+  </div>
+</div>
+<hr />
+<div class="carriage-list">
+  @for (carriage of trip.carriageData; track carriage.code) {
+    <div class="carriage">
+      <div>{{ carriage.name }}</div>
+      <div>{{ carriage.freeSeatsCount }} seats</div>
+      <div>{{ carriage.price | currency }}</div>
+      <button
+        class="button-small"
+        (click)="
+          bookTicket(
+            trip.rideId,
+            trip.fromStationId,
+            trip.toStationId,
+            carriage.code
+          )
+        "
+      >
+        <img src="icon-ticket.png" alt="Book ticket" />
+      </button>
+    </div>
+  }
+</div>
